@@ -1,0 +1,26 @@
+version: 1.0
+runtime: nodejs18
+
+build:
+  commands:
+    build:
+      - echo "Installing frontend dependencies..."
+      - npm install
+      - echo "Building production bundle..."
+      - npm run build
+      - echo "Installing static file server..."
+      - npm install -g serve
+
+run:
+  runtime-version: 18
+  command: serve -s dist -l 8080
+  network:
+    port: 8080
+    env: PORT
+  env:
+    - name: PORT
+      value: "8080"
+    # VITE_API_BASE_URL must be baked in at BUILD time (Vite inlines env vars),
+    # so for App Runner source deployments prefer setting it as a build-time
+    # variable in the console, or use the Docker-based deployment instead
+    # (see frontend/Dockerfile ARG VITE_API_BASE_URL) for full control.

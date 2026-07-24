@@ -1,0 +1,30 @@
+# This is a monorepo containing TWO deployable services:
+#
+#   backend/apprunner.yaml   -> Node.js/Express API service
+#   frontend/apprunner.yaml  -> Static React app served on port 8080
+#
+# AWS App Runner (source-based deploys) expects apprunner.yaml at the root
+# of the connected source location. Since this repo hosts two services,
+# create TWO separate App Runner services and point each one at the
+# matching subdirectory as its "source directory":
+#
+#   1. Backend service  -> source directory: backend/
+#   2. Frontend service -> source directory: frontend/
+#
+# Alternatively, use the image-based deployment path (recommended for
+# production): build and push each Dockerfile to Amazon ECR, then create
+# an App Runner service "from an existing container image" for each.
+# See README.md -> "Deploying to AWS App Runner" for full step-by-step
+# instructions (both source-based and image-based).
+version: 1.0
+runtime: nodejs18
+build:
+  commands:
+    build:
+      - echo "See backend/apprunner.yaml and frontend/apprunner.yaml — this file is documentation only."
+run:
+  runtime-version: 18
+  command: echo "Deploy backend/ and frontend/ as separate App Runner services."
+  network:
+    port: 8080
+    env: PORT

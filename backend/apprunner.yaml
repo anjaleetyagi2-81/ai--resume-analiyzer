@@ -1,0 +1,26 @@
+version: 1.0
+runtime: nodejs18
+
+build:
+  commands:
+    build:
+      - echo "Installing backend dependencies..."
+      - npm install --omit=dev
+
+run:
+  runtime-version: 18
+  command: node src/server.js
+  network:
+    port: 5000
+    env: PORT
+  env:
+    - name: NODE_ENV
+      value: production
+    - name: PORT
+      value: "5000"
+    # Set the remaining variables as PLAINTEXT or SECRET env vars in the
+    # App Runner console/CLI instead of committing real secrets here:
+    # - OPENAI_API_KEY   (SECRET)
+    # - OPENAI_MODEL     (PLAINTEXT, e.g. "gpt-4o-mini")
+    # - CLIENT_ORIGIN    (PLAINTEXT, e.g. "https://your-frontend-domain")
+    # - MAX_FILE_SIZE_MB (PLAINTEXT, e.g. "5")
