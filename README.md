@@ -1,6 +1,6 @@
-# 🩻 AI Resume Analyzer — ResumeScan
+# 🩻 AI Resume Analyzer — ResumeScan -
 
-An end-to-end, production-ready web application that analyzes resumes (PDF/DOCX) using AI,
+An end-to-end, production-ready web application that analyzes resumes (PDF/DOCX) using AI with the help of open router,
 scoring ATS (Applicant Tracking System) compatibility, detecting skills, finding gaps against a
 target job description, and generating actionable, AI-written suggestions — with a downloadable
 PDF report.
